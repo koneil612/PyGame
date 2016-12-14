@@ -1,0 +1,11 @@
+class Animal(object):
+    def breed(self):
+        return Animal()
+
+class Dog(Animal):
+    def woof(self):
+        print "Woof"
+
+class Cat(Animal):
+    def meow(self):
+        print "Meow"
