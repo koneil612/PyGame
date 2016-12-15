@@ -137,7 +137,7 @@ class Battle(object):
             enemy.print_status()
             time.sleep(1.5)
             print "You have: "
-            print hero.backpack_items
+            print Backpack(hero)
             print " in your backback. Did you want to take anything out for this battle?"
             print " 1. Yes"
             print " 2. No"
@@ -203,11 +203,10 @@ class Sword(object):
 class Backpack(object):
     name = 'backpack'
     def apply(self, hero):
-        hero.backpack_items[item]
+        hero.backpack_items
         print "%s was added to your backpack." % store.item
-        # for item in hero.backpack_items:
-        #     print item.name
-
+        for item in self.backpack_items:
+            print item.name
 
 
 class Store(object):
