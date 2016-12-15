@@ -20,6 +20,11 @@ class Pomeranian(Dog):
     def woof(self):
         print "woof woof woof woofwoofwoof"
 
+class EagerDog(Dog):
+    def woof(self):
+        Dog.woof(self)
+        Dog.woof(self)
+
 c = Cat()
 d = Dog()
 c.makenoise()

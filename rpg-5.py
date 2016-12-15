@@ -27,6 +27,7 @@ class Character(object):
         if self.health <= 0:
             print "%s is dead." % self.name
 
+
     def print_status(self):
         print "%s has %d health and %d power." % (self.name, self.health, self.power)
 

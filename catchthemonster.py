@@ -112,10 +112,13 @@ def main():
     # PUT INITIALIZATION CODE HERE #
     ################################
     background = pygame.image.load('background.png').convert_alpha()
-
+    goblin_list = [
+        goblin = Goblin()
+    ]
     monster = Monster()
     hero = Hero()
     goblin = Goblin()
+    goblin2 = Goblin()
 
     # game loop
     stop_game = False
@@ -154,7 +157,6 @@ def main():
                     game_win=False
                     game_lost = False
                     soundPlayed=False
-
                     monster.move
                     # monster.setInitialPosition(width, height,hero)
             if event.type == pygame.QUIT:
@@ -168,6 +170,7 @@ def main():
         monster.move(width, height)
         hero.move(width, height)
         goblin.move(width,height)
+        goblin2.move(width,height)
 
         # fill background color
         screen.blit(background, [0, 0])
@@ -185,6 +188,7 @@ def main():
         if not game_win:
             monster.render(screen)
             goblin.render(screen)
+            goblin2.render(screen)
 
         if collision(hero.x,monster.x, hero.y, monster.y):
             game_win = True
