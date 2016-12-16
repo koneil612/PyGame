@@ -3,10 +3,17 @@
   <head>
     <meta charset="utf-8">
     <title>{{title}}</title>
+    <link rel="stylesheet" href="static/style.css" />
   </head>
   <body>
     {% block body %}
       <h1>Welcome!</h1>
     {% endblock %}
+    {% block headernav %}
+    insert new student
+    {% endblock %}
+    <p>
+        i am in the rest of the layout
+    </p>
   </body>
 </html>

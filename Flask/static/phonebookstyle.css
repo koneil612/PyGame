@@ -1,0 +1,18 @@
+@font-face {
+    src: url('fonts/Christbaumkugeln.otf');
+}
+
+body {
+    background-color: red;
+}
+
+.overlay {
+    font-family: 'Christbaumkugeln';
+    text-align: center;
+    font-size: 52px;
+    color: white;
+}
+
+.footerimg {
+    position: static;;
+}

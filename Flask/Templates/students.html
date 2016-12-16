@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>{{title}}</title>
-  </head>
-  <body>
-    <h1>{{title}}</h1>
+{% extends "layout.html" %}
+{% block body %}
+     <h1>{{title}}-{{q}}</h1>
+
     <ul>
       {% for id, name in student_list %}
       <li><a href="/update_student?id={{id}}">{{name}}</a></li>
       {% endfor %}
     </ul>
-  </body>
-</html>
+ {% endblock %}
+
+ {% block headernav %}
+ <div id="nav">
+     I am a new student <a href="new_student">New student</a>
+ </div>
+{% endblock %}
