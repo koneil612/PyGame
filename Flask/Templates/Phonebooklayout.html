@@ -3,23 +3,48 @@
   <head>
     <meta charset="utf-8">
     <title>{{title}}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
     <link rel="stylesheet" href="static/phonebookstyle.css" />
   </head>
 
   <body>
 
       {% block headernav %}
-     header why isn't it up there....
+      <div class="overlay">
+       <img src="/static/overlay2.png" style="max-width: auto; max-height: 200px" />
+       <br />
+           Christmas:Card:List
+       </div>
+      <div id="nav" style="text-align: center">
+      <a href="new_entry">Click here to add a new Christmas Card entry</a>
+      </div>
       {% endblock %}
+      <div class="row">
+          <div class="col-md-4 left">
+              Options:<br />
+              Add a new contact.<br />
+              Export to Excel<br />
+              Print as Labels
+          </div>
+          <div class="col-md-4 left entry">
+              {% block content %}
+              <!-- body of phonebook.html -->
+              {% endblock %}
 
-
-
-    {% block body %}
-      body of phonebook.html
-    {% endblock %}
+              {% block body %}
+              <!-- body of new entry.html -->
+              {% endblock %}
+          </div>
+          <div class="col-md-4 right"><img src="/static/raindeer.jpg" style="float: left"> </div>
+      </div>
 
     {% block footer %}
-    footer here
+    <div class="row footer" >
+        <div class="col-md-12">
+        <img src="/static/overlay12.png" class="footerimg" style="max-width: 200px;">
+    </div>
+    </div>
     {% endblock %}
   </body>
 </html>

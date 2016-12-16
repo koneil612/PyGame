@@ -1,28 +1,16 @@
 {% extends "phonebooklayout.html" %}
 
-{% block headernav %}
-<div class="overlay">
- <img src="/static/overlay2.png" style="max-width: auto; max-height: 300px" /><br />
-     Christmas:Card:List
-
-</div>
-{% endblock %}
-
-<div id="nav">
-    Click here to add a new Christmas Card entry: <a href="new_entry">New Entry</a>
-</div>
-{% block body %}
-
-    <ul>
-      {% for id, name, address, city, state, zip in phonebook_list %}
-      <li>{{name}}<br />{{address}}<br />{{city}}<br />{{state}}<br />{{zip}}</li>
-      {% endfor %}
-    </ul>
+{% block content %}
+{% for id, name, address, city, state, zip in phonebook_list %}
+<!--
+<div class="entry"> -->
+        <p >
+    {{name}} &nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="update_entry?id={{id}}">-Update-</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/delete_contact?id={{id}}">-Delete-</a><br />
+    {{address}}<br />{{city}}, {{state}}, {{zip}}
+    <br />
+</p>
+<!-- </div> -->
+{% endfor %}
  {% endblock %}
-
-
- {% block footer %}
-
-<center><img src="/static/overlay12.png" class="footerimg" style="max-width: 200px;">
-</center>
-  {% endblock %}
