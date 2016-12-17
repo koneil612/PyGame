@@ -1,12 +1,13 @@
-DROP TABLE IF EXISTS `student`;
-CREATE TABLE `student` (
+DROP TABLE IF EXISTS `phonebook`;
+CREATE TABLE `phonebook` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `name` TEXT NULL,
-  `mdate` DATETIME NULL,
-  `cdate` DATETIME NULL,
-  `deleted` TINYINT NULL DEFAULT 0,
+  `firstname` TEXT NULL,
+  `lastname` TEXT NULL,
+  `address` TEXT NULL,
+  `address2` TEXT NULL,
+  `city` TEXT NULL,
+  `state` TEXT NULL,
+  `zip` TEXT NULL,
+
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
-
-insert into student(`name`) values ('Janice');
-insert into student(`name`) values ('Bill');

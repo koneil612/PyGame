@@ -1,14 +1,15 @@
 {% extends "phonebooklayout.html" %}
 
 {% block content %}
-{% for id, name, address, city, state, zip in phonebook_list %}
+{% for id, firstname, lastname, address, address2, city, state, zip in phonebook_list %}
 <!--
 <div class="entry"> -->
         <p >
-    {{name}} &nbsp;&nbsp;&nbsp;&nbsp;
+    {{firstname}}&nbsp;{{lastname}} 
     <a href="update_entry?id={{id}}">-Update-</a>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/delete_contact?id={{id}}">-Delete-</a><br />
-    {{address}}<br />{{city}}, {{state}}, {{zip}}
+    {{address}}{{address2}}<br />
+    {{city}}, {{state}}, {{zip}}
     <br />
 </p>
 <!-- </div> -->
