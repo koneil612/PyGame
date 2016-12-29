@@ -7,7 +7,8 @@ KEY_DOWN = 274
 KEY_LEFT = 276
 KEY_RIGHT = 275
 collide = False
-
+level = 1
+# goblins = []
 
 class Monster(object):
     def __init__(self):
@@ -58,8 +59,8 @@ class Goblin(object):
         if self.y < 0:
             self.y = height
         if time.time() - self.time > 2:
-            self.move_y = random.randint(-5, 5)
-            self.move_x = random.randint(-5, 5)
+            self.move_y = random.randint(-1, 2)
+            self.move_x = random.randint(-1, 2)
             self.time = time.time()
     def render(self, screen):
         screen.blit(self.img, (self.x, self.y))
@@ -89,15 +90,15 @@ def collision(x1, x2, y1, y2):
     return (x1 + 32 > x2) and (x2 + 32 > x1) and (y1 + 32 > y2) and (y2 + 32 > y1)
 
 def main():
+    # global goblins
+    global level
     # declare the size of the canvas
     width = 512
     height = 480
 
-
     # initialize the pygame framework
     pygame.init()
     time.time()
-
 
     # create screen
     screen = pygame.display.set_mode((width, height))
@@ -112,19 +113,21 @@ def main():
     # PUT INITIALIZATION CODE HERE #
     ################################
     background = pygame.image.load('background.png').convert_alpha()
-    goblin_list = [
-        goblin = Goblin()
-    ]
     monster = Monster()
     hero = Hero()
     goblin = Goblin()
-    goblin2 = Goblin()
+    sound = pygame.mixer.Sound('music.wav')
+    sound.play()
+    soundPlayed = True
 
     # game loop
     stop_game = False
     game_win= False
     game_lost = False
     soundPlayed = False
+    nextlevel = False
+
+
     while not stop_game:
         # look through user events fired
         for event in pygame.event.get():
@@ -170,7 +173,8 @@ def main():
         monster.move(width, height)
         hero.move(width, height)
         goblin.move(width,height)
-        goblin2.move(width,height)
+
+
 
         # fill background color
         screen.blit(background, [0, 0])
@@ -180,15 +184,12 @@ def main():
         # PUT CUSTOM DISPLAY CODE HERE #
         ################################
         hero.render(screen)
-        # sound = pygame.mixer.Sound('music.wav')
-        # sound.play()
-        # soundPlayed = True
 
         # game_over up top is set to false so it's saying if TRUE:::
         if not game_win:
             monster.render(screen)
             goblin.render(screen)
-            goblin2.render(screen)
+            nextlevel = False
 
         if collision(hero.x,monster.x, hero.y, monster.y):
             game_win = True
@@ -197,20 +198,29 @@ def main():
             game_lost = True
 
         if game_win == True:
+            if nextlevel == False:
+                level += 1
             sound = pygame.mixer.Sound('win.wav')
             sound.play()
             soundPlayed = True
-            font = pygame.font.Font(None, 32)
-            text = font.render("You Win :) Hit ENTER to play again", 0, (255,255,255))
+            font = pygame.font.SysFont("Corbel", 20)
+            text = font.render("Good job! Hit ENTER to go to the next level!", 0, (255,255,255))
             screen.blit(text, (100,250))
+            pygame.display.set_caption('Level %r' % (level))
+            nextlevel = True
+
 
         if game_lost == True:
+            level = 1
+            pygame.display.set_caption('Level %r' % (level))
             sound = pygame.mixer.Sound('lose.wav')
             sound.play()
             soundPlayed = True
-            font = pygame.font.Font(None, 32)
+            font = pygame.font.SysFont("Corbel", 20)
             text = font.render("You Loose :( Hit ENTER to play again", 0, (255,255,255))
             screen.blit(text, (100,250))
+
+
 
         # update the canvas display with the currently drawn frame
         pygame.display.update()
