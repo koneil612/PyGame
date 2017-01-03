@@ -58,8 +58,16 @@ def home():
     q=request.args.get('q')
     # print list
 
-    return render_template("phonebook.html", phonebook_list=list, title="Christmas Card List", q=q)
+    return render_template("phonebooklisting.html", phonebook_list=list, title="Christmas Card List", q=q)
 
+@app.route('/phonebook', methods= ['GET'])
+#pulls all the listings in the phonebook
+def phonebook():
+    query = ("SELECT id, firstname, lastname, address, address2, city, state, zip FROM phonebook")
+    cur.execute(query)
+    list = cur.fetchall()
+    q=request.args.get('q')
+    return render_template("phonebook.html", phonebook_list=list, title="Christmas Card List", q=q)
 
 @app.route('/new_entry')
 def new_entry():
@@ -74,7 +82,7 @@ def submit_new_entry():
     city=request.form.get('city')
     state=request.form.get('state')
     zip=request.form.get('zip')
-    query= "INSERT INTO phonebook (firstname, lastname, address, address2, city, state,zip) values ('%s','%s','%s','%s','%s','%s','%s')" % (firstname, lastname, address, address2, city, state, zip)
+    query= "INSERT INTO phonebook (firstname, lastname, address, address2, city, state,zip) values ('%s','%s','%s','%s','%s','%s','%s')" % ((Database.escape(firstname)), (Database.escape(lastname)), (Database.escape(address)), (Database.escape(address2)), (Database.escape(city)), (Database.escape(state)), zip)
     cur.execute(query)
     conn.commit()
     return render_template("submit_new_entry.html", firstname=firstname, lastname=lastname, address=address, address2=address2, city=city, state=state, zip=zip)
@@ -105,7 +113,7 @@ def submit_update_entry():
     city=request.form.get('city')
     state=request.form.get('state')
     zip=request.form.get('zip')
-    query= "UPDATE phonebook SET firstname = '%s', lastname='%s', address='%s', address2='%s', city='%s', state='%s', zip='%s' WHERE id = %s" % (firstname, lastname, address, address2, city, state, zip, id)
+    query= "UPDATE phonebook SET firstname = '%s', lastname='%s', address='%s', address2='%s', city='%s', state='%s', zip='%s' WHERE id = %s" % ((Database.escape(firstname)), (Database.escape(lastname)), (Database.escape(address)), (Database.escape(address2)), (Database.escape(city)), (Database.escape(state)), zip, id)
     cur.execute(query)
     conn.commit()
     return render_template("submit_update_entry.html", firstname=firstname)
@@ -118,8 +126,17 @@ def delete_contact():
     conn.commit()
     return redirect("/")
 
+
+class Database(object):
+    @staticmethod
+    def escape(value):
+        return value.replace("'","''")
+
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+
 
 cur.close()
 conn.close()

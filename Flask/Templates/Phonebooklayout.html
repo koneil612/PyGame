@@ -29,12 +29,16 @@
              <a href="new_entry">Add a new contact</a><br />
               Export to Excel<br />
               Print as Labels<br />
-              See entire list<br/>
+              <a href="phonebook">See entire list</a><br/>
               <a href='/logout'>Logout</a>
           </br/>
 
           </div>
           <div class="col-md-6 middle entry">
+              {% block listing %}
+              <!-- body of phonelisting.html -->
+              {% endblock %}
+
               {% block content %}
               <!-- body of phonebook.html -->
               {% endblock %}
