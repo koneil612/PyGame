@@ -1,7 +1,9 @@
-from flask import Flask,render_template, request, redirect
+from flask import Flask,render_template, request, redirect, session
+
 import mysql.connector
 
 app = Flask("MyApp")
+app.secret_key = 'alkj'
 
 conn = mysql.connector.connect(
          user='root',
@@ -11,8 +13,45 @@ conn = mysql.connector.connect(
 
 cur = conn.cursor()
 
-@app.route('/')
+@app.route('/', methods=['POST', 'GET'])
+def login():
+    if 'username' in session:
+        return redirect('/home')
+    else:
+        return render_template("submit_login.html")
+
+@app.route('/submit_login', methods=['GET','POST'])
+def submit_login():
+    username = request.form.get('username')
+    password = request.form.get('password')
+    query = ("SELECT username, password FROM myuser WHERE username = '%s'" % username)
+    cur.execute(query)
+    # result_list = namedresult()
+    result_list = cur.fetchone()
+    # q=request.args.get('q')
+    if result_list and len(result_list) > 0:
+        username = result_list[0]
+        if result_list[1]== password:
+            #successfully logged in
+            session['username'] = username
+            return redirect('/home')
+        else:
+            return redirect('/')
+    else:
+        return redirect('/')
+
+@app.route('/logout', methods=['POST', 'GET'])
+def logout():
+    del session['username']
+    return redirect('/')
+
+@app.route('/home', methods= ['GET', 'POST'])
 def home():
+    # if not logged in
+    #redir to login
+    if 'username' not in session:
+        return redirect('/submit_login')
+
     query = ("SELECT id, firstname, lastname, address, address2, city, state, zip FROM phonebook")
     cur.execute(query)
     list = cur.fetchall()

@@ -18,17 +18,21 @@
        </div>
       <div id="nav" style="text-align: center">
       <a href="new_entry">Click here to add a new Christmas Card entry</a>
+
       </div>
       {% endblock %}
       <div class="container-fluid">
 
       <div class="row" id=bulk>
           <div class="col-md-3 left">
-              Options:<br />
-              Add a new contact.<br />
+              <b><u>Options:</b></u><br />
+             <a href="new_entry">Add a new contact</a><br />
               Export to Excel<br />
               Print as Labels<br />
-              See entire list
+              See entire list<br/>
+              <a href='/logout'>Logout</a>
+          </br/>
+
           </div>
           <div class="col-md-6 middle entry">
               {% block content %}

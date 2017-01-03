@@ -6,7 +6,9 @@
 body {
     background-color: #990033;
     font-family: 'Jasmine';
-    font-size: 30px;
+    font-size: 34px;
+    color: #CC9933;
+    text-align: center;
 }
 
 .overlay {
@@ -33,6 +35,12 @@ body {
     margin-right: 15px;
     /*padding: 5px;*/
 }
+
+.left a {
+    text-decoration: none;
+    color: #669999
+}
+
 .entry {
     color: #669999;
     background-color: white;
