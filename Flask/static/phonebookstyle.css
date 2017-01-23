@@ -8,7 +8,27 @@ body {
     font-family: 'Jasmine';
     font-size: 34px;
     color: #CC9933;
-    text-align: center;
+}
+
+/*button {
+    margin: 15px;
+    border-radius: 20px;
+    border: solid black;
+    border-bottom: 2px;
+    border-left: 2px;
+    background-color: white;
+
+
+}*/
+
+.container {
+  /*display: flex;*/
+  justify-content: center;
+}
+
+.container a {
+    font-size: 40px;
+    color: purple;
 }
 
 .overlay {

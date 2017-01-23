@@ -6,10 +6,10 @@ app = Flask("MyApp")
 app.secret_key = 'alkj'
 
 conn = mysql.connector.connect(
-         user='root',
-         password='',
-         host='127.0.0.1',
-         database='demo')
+         user='jrrydbspeyhsdm',
+         password='dbcc418026d62a27ce58eced992becf2a36a4a36ea572b0a32b939f978f33a91',
+         host='ec2-54-163-234-4.compute-1.amazonaws.com',
+         database='d22p7l07ohqiie')
 
 cur = conn.cursor()
 
