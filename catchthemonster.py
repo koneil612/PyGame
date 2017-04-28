@@ -99,13 +99,10 @@ def main():
     # initialize the pygame framework
     pygame.init()
     time.time()
-
     # create screen
     screen = pygame.display.set_mode((width, height))
-
     # set window caption
     pygame.display.set_caption('Catch The Monster')
-
     # create a clock
     clock = pygame.time.Clock()
 
