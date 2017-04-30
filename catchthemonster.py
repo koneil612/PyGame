@@ -124,7 +124,6 @@ def main():
     soundPlayed = False
     nextlevel = False
 
-
     while not stop_game:
         # look through user events fired
         for event in pygame.event.get():
